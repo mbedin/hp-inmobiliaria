@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="true" />
+
+	<constant name="struts.custom.i18n.resources" value="prode" />	 
+
+	<package name="prode-default" extends="struts-default">
+			
+        <result-types>
+            <result-type name="chain" class="com.opensymphony.xwork2.ActionChainResult"/>
+            <result-type name="dispatcher" class="org.apache.struts2.dispatcher.ServletDispatcherResult" default="true"/>
+            <result-type name="freemarker" class="org.apache.struts2.views.freemarker.FreemarkerResult"/>
+            <result-type name="httpheader" class="org.apache.struts2.dispatcher.HttpHeaderResult"/>
+            <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletRedirectResult"/>
+            <result-type name="redirectAction" class="org.apache.struts2.dispatcher.ServletActionRedirectResult"/>
+            <result-type name="stream" class="org.apache.struts2.dispatcher.StreamResult"/>
+            <result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult"/>
+            <result-type name="xslt" class="org.apache.struts2.views.xslt.XSLTResult"/>
+            <result-type name="plainText" class="org.apache.struts2.dispatcher.PlainTextResult" />
+            
+        </result-types>
+
+        <interceptors>
+            <interceptor name="alias" class="com.opensymphony.xwork2.interceptor.AliasInterceptor"/>
+            <interceptor name="autowiring" class="com.opensymphony.xwork2.spring.interceptor.ActionAutowiringInterceptor"/>
+            <interceptor name="chain" class="com.opensymphony.xwork2.interceptor.ChainingInterceptor"/>
+            <interceptor name="conversionError" class="org.apache.struts2.interceptor.StrutsConversionErrorInterceptor"/>
+            <interceptor name="cookie" class="org.apache.struts2.interceptor.CookieInterceptor"/>
+            <interceptor name="clearSession" class="org.apache.struts2.interceptor.ClearSessionInterceptor" />
+            <interceptor name="createSession" class="org.apache.struts2.interceptor.CreateSessionInterceptor" />
+            <interceptor name="debugging" class="org.apache.struts2.interceptor.debugging.DebuggingInterceptor" />
+            <interceptor name="externalRef" class="com.opensymphony.xwork2.interceptor.ExternalReferencesInterceptor"/>
+            <interceptor name="execAndWait" class="org.apache.struts2.interceptor.ExecuteAndWaitInterceptor"/>
+            <interceptor name="exception" class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor"/>
+            <interceptor name="fileUpload" class="org.apache.struts2.interceptor.FileUploadInterceptor"/>
+            <interceptor name="i18n" class="com.opensymphony.xwork2.interceptor.I18nInterceptor"/>
+            <interceptor name="logger" class="com.opensymphony.xwork2.interceptor.LoggingInterceptor"/>
+            <interceptor name="modelDriven" class="com.opensymphony.xwork2.interceptor.ModelDrivenInterceptor"/>
+            <interceptor name="scopedModelDriven" class="com.opensymphony.xwork2.interceptor.ScopedModelDrivenInterceptor"/>
+            <interceptor name="params" class="com.opensymphony.xwork2.interceptor.ParametersInterceptor"/>
+            <interceptor name="actionMappingParams" class="org.apache.struts2.interceptor.ActionMappingParametersInteceptor"/>
+            <interceptor name="prepare" class="com.opensymphony.xwork2.interceptor.PrepareInterceptor"/>
+            <interceptor name="staticParams" class="com.opensymphony.xwork2.interceptor.StaticParametersInterceptor"/>
+            <interceptor name="scope" class="org.apache.struts2.interceptor.ScopeInterceptor"/>
+            <interceptor name="servletConfig" class="org.apache.struts2.interceptor.ServletConfigInterceptor"/>
+            <interceptor name="sessionAutowiring" class="org.apache.struts2.spring.interceptor.SessionContextAutowiringInterceptor"/>
+            <interceptor name="timer" class="com.opensymphony.xwork2.interceptor.TimerInterceptor"/>
+            <interceptor name="token" class="org.apache.struts2.interceptor.TokenInterceptor"/>
+            <interceptor name="tokenSession" class="org.apache.struts2.interceptor.TokenSessionStoreInterceptor"/>
+            <interceptor name="validation" class="org.apache.struts2.interceptor.validation.AnnotationValidationInterceptor"/>
+            <interceptor name="workflow" class="com.opensymphony.xwork2.interceptor.DefaultWorkflowInterceptor"/>
+            <interceptor name="store" class="org.apache.struts2.interceptor.MessageStoreInterceptor" />
+            <interceptor name="checkbox" class="org.apache.struts2.interceptor.CheckboxInterceptor" />
+            <interceptor name="profiling" class="org.apache.struts2.interceptor.ProfilingActivationInterceptor" />
+            <interceptor name="roles" class="org.apache.struts2.interceptor.RolesInterceptor" />
+            <interceptor name="jsonValidation" class="org.apache.struts2.interceptor.validation.JSONValidationInterceptor" />
+            <interceptor name="annotationWorkflow" class="com.opensymphony.xwork2.interceptor.annotations.AnnotationWorkflowInterceptor" />
+            <interceptor name="multiselect" class="org.apache.struts2.interceptor.MultiselectInterceptor" />
+
+            <interceptor-stack name="prode-default">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="multiselect"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                  <param name="excludeParams">dojo\..*,^struts\..*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+            </interceptor-stack>
+		</interceptors>
+		
+		
+		<default-interceptor-ref name="prode-default"/>
+
+		<!--*************************-->
+		<!--  Comienzo Site Publico  -->
+		<!--*************************-->
+
+		<!--  Login -->
+        
+        <action name="login" class="loginAction" method="doInput">
+            <result name="input" type="freemarker">public/login.ftl</result>
+        </action>
+        
+        <action name="loginIngresar" class="loginAction" method="doIngresar">
+			<result name="input" type="freemarker">public/login.ftl</result>
+			<result name="clienteEliminado" type="freemarker">public/fueraDeLaPromo.ftl</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">principal</param>
+			</result>
+		</action>
+		
+		<!-- Password -->
+        <action name="cambioPassword" class="passwordAction" method="doInput">
+            <result name="input" type="freemarker">public/cambioPassword.ftl</result>
+        </action>
+
+        <action name="cambiarPassword" class="passwordAction" method="doCambiarPassword">
+            <result name="input" type="freemarker">public/cambioPassword.ftl</result>
+            <result name="success" type="freemarker">public/mensaje.ftl</result>
+        </action>
+
+        <action name="reseteoPassword" class="passwordAction" method="doReseteo">
+            <result name="input" type="freemarker">public/resetPassword.ftl</result>
+        </action>
+
+        <action name="resetearPassword" class="passwordAction" method="doResetearPassword">
+            <result name="input" type="freemarker">public/resetPassword.ftl</result>
+            <result name="success" type="freemarker">public/mensaje.ftl</result>
+        </action>
+
+
+		<!--  Principal -->
+        <action name="principal" class="principalAction" method="doInput">
+            <result name="input" type="freemarker">public/principal.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+
+		<!--  Como Jugar -->
+        <action name="comoJugar" class="comoJugarAction" method="doInput">
+			<result name="input" type="freemarker">public/comojugar.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+		</action>
+
+        <action name="aceptoBases" class="comoJugarAction" method="doAceptoBases">
+			<result name="input" type="freemarker">public/comojugar.ftl</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">principal</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+		</action>
+		
+		
+		<!--  TarjetasPorJugar -->
+		<action name="tarjetasPorJugarInit" class="tarjetasPorJugarAction" method="doInputInit">
+            <result name="input" type="freemarker">public/tarjetasPorJugar.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+		
+        <action name="tarjetasPorJugar" class="tarjetasPorJugarAction" method="doInput">
+            <result name="input" type="freemarker">public/tarjetasPorJugar.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+
+  	  	<!--  Tarjetas jugadas -->  
+		<action name="tarjetasJugadasInit" class="tarjetasJugadasAction" method="doInputInit">
+			<result name="input" type="freemarker">public/tarjetasJugadas.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+		<action name="tarjetasJugadas" class="tarjetasJugadasAction" method="doInput">
+			<result name="input" type="freemarker">public/tarjetasJugadas.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+		
+		<!--  Tarjeta -->
+        <action name="tarjetaPorJugar" class="tarjetaAction" method="doInput">
+            <result name="input" type="freemarker">public/tarjeta.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+		<!--result name="inputPtr" type="freemarker">public/tarjetaptr.ftl</result-->
+        
+        <action name="tarjetaGrabar" class="tarjetaAction" method="doSave">
+        	<result name="input" type="freemarker">public/tarjeta.ftl</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">tarjetasPorJugar</param>
+			</result>
+			<result name="tarjetasPorJugar" type="redirectAction">
+				<param name="actionName">tarjetasPorJugar</param>
+			</result>
+			<result name="tarjetasJugadas" type="redirectAction">
+				<param name="actionName">tarjetasJugadas</param>
+			</result>
+			<result name="error" type="freemarker">public/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>			
+        </action>
+		<!-- <result name="success" type="freemarker">public/mensaje.ftl</result>-->
+
+        <action name="tarjetaJugada" class="tarjetaAction" method="doInput">
+            <result name="input" type="freemarker">public/tarjeta.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+        <action name="tarjetaModificar" class="tarjetaAction" method="doInputModificar">
+            <result name="input" type="freemarker">public/tarjeta.ftl</result>
+             <result name="error" type="freemarker">public/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+         <!--  Tarjeta Octavos -->
+        <action name="tarjetaPorJugar8" class="tarjeta8Action" method="doInput">
+            <result name="input" type="freemarker">public/tarjeta8.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+        <action name="tarjetaGrabar8" class="tarjeta8Action" method="doSave">
+        	<result name="input" type="freemarker">public/tarjeta8.ftl</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">tarjetasPorJugar</param>
+			</result>
+			<result name="tarjetasPorJugar" type="redirectAction">
+				<param name="actionName">tarjetasPorJugar</param>
+			</result>
+			<result name="tarjetasJugadas" type="redirectAction">
+				<param name="actionName">tarjetasJugadas</param>
+			</result>
+			<result name="error" type="freemarker">public/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>			
+        </action>
+		<!-- <result name="success" type="freemarker">public/mensaje.ftl</result>-->
+
+        <action name="tarjetaJugada8" class="tarjeta8Action" method="doInput">
+            <result name="input" type="freemarker">public/tarjeta8.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+        <action name="tarjetaModificar8" class="tarjeta8Action" method="doInputModificar">
+            <result name="input" type="freemarker">public/tarjeta8.ftl</result>
+            <result name="error" type="freemarker">public/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+        <!--  Trivia -->
+        <action name="puntosBonus" class="triviaAction" method="doInput">
+            <result name="input" type="freemarker">public/trivia.ftl</result>
+            <result name="triviaJugada" type="freemarker">public/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+        <action name="pregunta" class="triviaAction" method="doPregunta">
+            <result name="input" type="freemarker">public/pregunta.ftl</result>
+            <result name="sinPregunta" type="freemarker">public/mensaje.ftl</result>
+            <result name="triviaJugada" type="freemarker">public/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+        <action name="respuesta" class="triviaAction" method="doRespuesta">
+        	<result name="input" type="freemarker">public/pregunta.ftl</result>
+        	<result name="success" type="freemarker">public/respuestaCorrecta.ftl</result>
+        	<result name="respuestaIncorrecta" type="freemarker">public/respuestaIncorrecta.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+
+
+  	  	<!--  Tarjetas Extras -->  
+		<action name="tarjetasExtras" class="tarjetasExtrasAction" method="doInput">
+			<result name="input" type="freemarker">public/tarjetasExtras.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+        
+		<!--  Session Expired -->
+        <action name="sessionExpired" class="loginAction" method="doExpired">
+            <result name="input" type="freemarker">public/sessionExpired.ftl</result>
+        </action>
+
+		<!--*******************-->
+		<!--  Fin Site Publico -->
+        <!--*******************-->
+        
+        
+        <!--**********************-->
+        <!--  Comienzo Site Admin -->
+        <!--**********************-->
+
+        <!--  Login Admin -->
+        <action name="loginAdmin" class="loginAdminAction" method="doInput">
+            <result name="input" type="freemarker">admin/login.ftl</result>
+        </action>
+        
+        <action name="loginIngresarAdmin" class="loginAdminAction" method="doIngresar">
+			<result name="input" type="freemarker">admin/login.ftl</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">menuAdmin</param>
+			</result>
+		</action>
+
+		<!--  Menu -->
+        <action name="menuAdmin" class="menuAction" method="doInput">
+            <result name="input" type="freemarker">admin/menu.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="menu2Admin" class="menuAction" method="doInput">
+            <result name="input" type="freemarker">admin/menu2.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<!--  Tarjetas Nuevas -->
+        <action name="tarjetasNuevas" class="tarjetasNuevasAction" method="doInput">
+            <result name="input" type="freemarker">admin/tarjetasNuevas.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarTarjetas" class="tarjetasNuevasAction" method="doGenerar">
+            <result name="input" type="freemarker">admin/tarjetasNuevas.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+		
+		<!--  Sin Tarjetas -->
+        <action name="sinTarjetas" class="tarjetasNuevasAction" method="doInputSinTarjetas">
+            <result name="input" type="freemarker">admin/sinTarjetas.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarSinTarjetas" class="tarjetasNuevasAction" method="doGenerarSinTarjetas">
+            <result name="input" type="freemarker">admin/sinTarjetas.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <!--  Tarjetas Nuevas Octavos -->
+        
+        <action name="tarjetasNuevasOctavos" class="tarjetasNuevasAction" method="doInputTarjetasOctavos">
+            <result name="input" type="freemarker">admin/tarjetasNuevasOctavos.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarTarjetasOctavos" class="tarjetasNuevasAction" method="doGenerarTarjetasOctavos">
+            <result name="input" type="freemarker">admin/tarjetasNuevasOctavos.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <!--  Tarjetas Nuevas Cuartos -->
+        
+        <action name="tarjetasNuevasCuartos" class="tarjetasNuevasAction" method="doInputTarjetasCuartos">
+            <result name="input" type="freemarker">admin/tarjetasNuevasCuartos.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarTarjetasCuartos" class="tarjetasNuevasAction" method="doGenerarTarjetasCuartos">
+            <result name="input" type="freemarker">admin/tarjetasNuevasCuartos.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <!--  Tarjetas Nuevas Semi -->
+        
+        <action name="tarjetasNuevasSemi" class="tarjetasNuevasAction" method="doInputTarjetasSemi">
+            <result name="input" type="freemarker">admin/tarjetasNuevasSemi.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarTarjetasSemi" class="tarjetasNuevasAction" method="doGenerarTarjetasSemi">
+            <result name="input" type="freemarker">admin/tarjetasNuevasSemi.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <!--  Tarjetas Nuevas Final -->
+        
+        <action name="tarjetasNuevasFinal" class="tarjetasNuevasAction" method="doInputTarjetasFinal">
+            <result name="input" type="freemarker">admin/tarjetasNuevasFinal.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarTarjetasFinal" class="tarjetasNuevasAction" method="doGenerarTarjetasFinal">
+            <result name="input" type="freemarker">admin/tarjetasNuevasFinal.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+		
+        
+		<!--  Tarjetas Productor -->
+        <action name="tarjetasProductor" class="tarjetasProductorAction" method="doInput">
+            <result name="input" type="freemarker">admin/tarjetasProductor.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+		<action name="generarTarjetasProductor" class="tarjetasProductorAction" method="doGenerar">
+            <result name="input" type="freemarker">admin/tarjetasProductor.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+		<!--  Promociones -->
+        <action name="promociones" class="promocionAction" method="doList">
+            <result name="input" type="freemarker">admin/promociones.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="promocion" class="promocionAction" method="doInput">
+            <result name="input" type="freemarker">admin/promocion.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="grabarPromocion" class="promocionAction" method="doSave">
+            <result name="input" type="freemarker">admin/promocion.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="eliminarPromocion" class="promocionAction" method="doDelete">
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+
+		<!--  Preguntas -->
+        <action name="preguntas" class="preguntaAction" method="doList">
+            <result name="input" type="freemarker">admin/preguntas.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="preguntaEdit" class="preguntaAction" method="doInput">
+            <result name="input" type="freemarker">admin/pregunta.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="grabarPregunta" class="preguntaAction" method="doSave">
+            <result name="input" type="freemarker">admin/pregunta.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="eliminarPregunta" class="preguntaAction" method="doDelete">
+          	<result name="input" type="freemarker">admin/preguntas.ftl</result>
+          	<result name="success" type="freemarker">admin/mensaje.ftl</result>
+          	<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+		
+		
+		<!--  Partidos -->
+        <action name="partidos" class="partidoAction" method="doList">
+            <result name="input" type="freemarker">admin/partidos.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="cargaResultado" class="partidoAction" method="doInput">
+            <result name="input" type="freemarker">admin/cargaResultado.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+		
+		<action name="guardaResultado" class="partidoAction" method="doSave">
+            <result name="input" type="freemarker">admin/cargaResultado.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="cargaPartido" class="partidoAction" method="doInputAlta">
+            <result name="input" type="freemarker">admin/cargaPartido.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="guardaPartido" class="partidoAction" method="doSaveAlta">
+            <result name="input" type="freemarker">admin/cargaPartido.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="tarjetasConPremio" class="partidoAction" method="doListTarjetasConPremio">
+            <result name="input" type="freemarker">admin/tarjetasConPremioEnPartido.ftl</result>
+           	<result name="success" type="freemarker">admin/mensaje.ftl</result>
+           	<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="tarjetasConPremioExcel" class="partidoAction" method="doExcelTarjetasConPremio">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="tarjetasConPremio.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+        
+        <action name="enviaNotificacionPremio" class="partidoAction" method="doSendNotificacion">
+            <result name="input" type="freemarker">admin/tarjetasConPremioEnPartido.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+   	
+
+		<!--  Posiciones  -->
+   		<action name="gruposPrimeraFase" class="gruposPrimeraFaseAction" method="doList">
+            <result name="input" type="freemarker">admin/posicionesPrimeraFase.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="cargaPosiciones" class="gruposPrimeraFaseAction" method="doInput">
+            <result name="input" type="freemarker">admin/cargaPosicionGrupo.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="grabarPosiciones" class="gruposPrimeraFaseAction" method="doSave">
+            <result name="input" type="freemarker">admin/cargaPosicionGrupo.ftl</result>
+            <result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="tarjetasConAciertosClasificacion" class="gruposPrimeraFaseAction" method="doListTarjetasConAciertos">
+            <result name="input" type="freemarker">admin/tarjetasConPremioPorClasificacion.ftl</result>
+           	<result name="success" type="freemarker">admin/mensaje.ftl</result>
+           	<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="tarjetasConPremioClasificacionExcel" class="gruposPrimeraFaseAction" method="doExcelTarjetasConAciertos">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="tarjetasConPremioClasificacion.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+        
+       <!--  Reportes Clientes -->
+        <action name="clientesAceptoBases" class="reportesClientesAction" method="doListAceptoBases">
+            <result name="success" type="freemarker">admin/clientesAceptoBases.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="clientesAceptoBasesExcel" class="reportesClientesAction" method="doExcelAceptoBases">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="clientes.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<!--  Reportes Tarjetas por Cliente -->
+        <action name="reporteTarjetasClientes" class="reportesClientesAction" method="doListTarjetas">
+            <result name="success" type="freemarker">admin/tarjetasClientes.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+        
+        <action name="reporteTarjetasClientesExcel" class="reportesClientesAction" method="doExcelTarjetas">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="tarjetas.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+        <!--  Reportes PuntosTrivia por Cliente -->
+        <action name="reportePuntosTriviaClientes" class="reportesClientesAction" method="doListPuntosTrivia">
+            <result name="success" type="freemarker">admin/puntosTriviaClientes.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="reportePuntosTriviaClientesExcel" class="reportesClientesAction" method="doExcelPuntosTrivia">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="puntos.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+		<!--  Reportes General por Cliente -->
+        <action name="reporteGeneralClientes" class="reportesClientesAction" method="doListGeneral">
+            <result name="success" type="freemarker">admin/datosGeneralClientes.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="reporteGeneralClientesExcel" class="reportesClientesAction" method="doExcelGeneral">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="general.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+        
+        <!--  Reportes Tarjetas por puntos  -->
+        <action name="reporteTarjetasPorPuntos" class="reportesClientesAction" method="doListTarjetasPorPuntos">
+            <result name="success" type="freemarker">admin/tarjetasPorPuntos.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="reporteTarjetasPorPuntosExcel" class="reportesClientesAction" method="doExcelTarjetasPorPuntos">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="tarjetasPuntos.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+		<!--  Reportes Clientes por puntos  -->
+		
+		<action name="reportePuntosClientes" class="reportesClientesAction" method="doListClientesPorPuntos">
+            <result name="success" type="freemarker">admin/clientesPorPuntos.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="reporteClientesPorPuntosExcel" class="reportesClientesAction" method="doExcelClientesPorPuntos">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="PuntosClientes.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+		<action name="reportePuntosFinales" class="reportesClientesAction" method="doListClientesPuntosFinales">
+            <result name="success" type="freemarker">admin/clientesPuntosFinales.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+        </action>
+
+        <action name="reporteClientesPuntosFinalesExcel" class="reportesClientesAction" method="doExcelClientesPuntosFinales">
+            <result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+		        <param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment;filename="PuntosFinalesClientes.xls"</param>
+		        <param name="bufferSize">4096</param>
+			</result>
+		</action>
+		
+        
+        		
+        <!--*****************-->
+        <!--  Fin Site Admin -->
+        <!--*****************-->
+        
+	</package>
+        
+</struts>

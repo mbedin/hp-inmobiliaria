@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="inmobiliaria">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../Program Files/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath">
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/annotations-api.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/catalina-ant.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/catalina-ha.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/catalina-tribes.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/catalina.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/el-api.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/jasper-el.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/jasper-jdt.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/jasper.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/jsp-api.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/servlet-api.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../Program Files/Apache/apache-tomcat-6.0.26/lib/tomcat-i18n-ja.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/activation.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/asm-attrs.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/asm.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/cglib-2.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-io.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-logging-api-1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/dom4j.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ehcache-1.2.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ejb3-persistence.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/freemarker-2.3.15.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-annotations.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-commons-annotations.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-entitymanager.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javassist-3.9.0.GA.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javassist.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jta-1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jta.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mail.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.12-bin.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ognl-2.7.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.5.8.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-simple-1.5.8.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/spring.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/sqljdbc.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/struts2-core-2.1.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/struts2-dojo-plugin-2.1.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/struts2-spring-plugin-2.1.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/xwork-core-2.1.6.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="inmobiliaria.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src/java"/>
+            <classpath refid="inmobiliaria.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+   "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+   
+   <tiles-definitions>
+     <!-- DEFINICION BASE -->
+     <definition name="base.definition" 
+                 path="/jsp/main.jsp">
+     </definition>
+  
+     <definition name="page.bienvenido" 
+                 extends="base.definition">
+        <put name="title" value="Bienvenido" />
+        <put name="cuerpo" value="/jsp/bienvenido.jsp" />
+     </definition>
+  
+     <!-- DEFINICION PANTALLA 1 -->
+     <definition name="page.pantalla1" 
+                 extends="base.definition">
+        <put name="title" value="Pantalla 1" />
+        <put name="cuerpo" value="/jsp/pantalla1.jsp"/>
+     </definition>
+  
+     <!-- DEFINICION PANTALLA 2 -->
+     <definition name="page.pantalla2" 
+                 extends="base.definition">
+        <put name="title" value="Pantalla 2" />
+        <put name="cuerpo" value="/jsp/pantalla2.jsp"/>
+     </definition>
+     
+  </tiles-definitions>

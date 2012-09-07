@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean
+        class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+		<bean id="usuarioService" class="com.inmobiliaria.service.UsuarioServiceImpl" />
+<!--	<bean id="clienteService" class="com.biogenesisbago.prode.service.ClienteServiceImpl" />-->
+<!--	<bean id="equipoService" class="com.biogenesisbago.prode.service.EquipoServiceImpl" />-->
+<!--	<bean id="grupoService" class="com.biogenesisbago.prode.service.GrupoServiceImpl" />-->
+<!--	<bean id="preguntaService" class="com.biogenesisbago.prode.service.PreguntaServiceImpl" />-->
+<!--	<bean id="respuestaClienteService" class="com.biogenesisbago.prode.service.RespuestaClienteServiceImpl" />-->
+<!--	<bean id="respuestaService" class="com.biogenesisbago.prode.service.RespuestaServiceImpl" />-->
+<!--	<bean id="tarjetaService" class="com.biogenesisbago.prode.service.TarjetaServiceImpl" />-->
+<!--	-->
+<!--	<bean id="parametroService" class="com.biogenesisbago.prode.service.ParametroServiceImpl" />-->
+<!--	<bean id="promocionService" class="com.biogenesisbago.prode.service.PromocionServiceImpl" />-->
+<!--	<bean id="pronosticoPartidoService" class="com.biogenesisbago.prode.service.PronosticoPartidoServiceImpl" />-->
+<!--	<bean id="provinciaService" class="com.biogenesisbago.prode.service.ProvinciaServiceImpl" />-->
+<!--	<bean id="partidoService" class="com.biogenesisbago.prode.service.PartidoServiceImpl" />-->
+<!--    <bean id="sedeService" class="com.biogenesisbago.prode.service.SedeServiceImpl" />-->
+<!--	<bean id="faseService" class="com.biogenesisbago.prode.service.FaseServiceImpl" />-->
+    
+    <bean id="entityManagerFactory"
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean
+                class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="MYSQL" />
+                <property name="showSql" value="false" />
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/inmobiliaria" />
+        <property name="username" value="ggold" />
+        <property name="password" value="ggoldprode123" />
+    </bean>
+
+    <bean id="transactionManager"
+        class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+		<property name="ignoreUnresolvablePlaceholders">  
+			<value>true</value>  
+		</property>  
+		<property name="locations"> 
+			<list>  
+				<value>classpath:mail.properties</value>  
+			</list>  
+		</property>  
+	</bean>  
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="host" value="${mail.host}"/>
+		<property name="port" value="${mail.port}"/>
+		<property name="protocol" value="${mail.protocol}"/>
+		<property name="username" value="${mail.username}"/>
+		<property name="password" value="${mail.password}"/>
+		<property name="javaMailProperties">
+		  <props>
+		    <prop key="mail.debug">${mail.debug}</prop>
+		    <prop key="mail.${mail.protocol}.auth">${mail.smtp-auth}</prop>
+		    <prop key="mail.from">${mail.from}</prop>
+		  </props>
+		</property>
+	</bean>  
+  
+	<bean id="mailService" class="com.inmobiliaria.service.MailServiceImpl">  
+		<property name="active" value="true"/>  
+		<property name="mailSender" ref="mailSender"/>  
+		<property name="from" value="${mail.from}"/>  
+		<property name="bcc" value="${mail.bcc}"/>
+	</bean>  
+	
+	<!--  Site Publico -->
+	
+	<bean id="loginAction" scope="prototype"
+        class="com.inmobiliaria.action.LoginAction">
+        <constructor-arg ref="clienteService" />
+    </bean>
+
+	<bean id="passwordAction" scope="prototype"
+        class="com.inmobiliaria.action.PasswordAction">
+        <constructor-arg ref="clienteService" />
+        <constructor-arg ref="mailService" />
+    </bean>
+    
+    <!--  Site Admin -->
+    <bean id="loginAdminAction" scope="prototype"
+        class="com.inmobiliaria.action.admin.LoginAction">
+        <constructor-arg ref="usuarioService" />
+    </bean>
+    
+</beans>
