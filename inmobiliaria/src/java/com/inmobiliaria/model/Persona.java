@@ -1,6 +1,7 @@
 package com.inmobiliaria.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 /**
@@ -26,14 +29,14 @@ public class Persona implements Serializable {
 
 	private int id;
 	private String EMail = "";
-	private String razonSocial = "";
+	private String dni = "";
 	private String nombreYApellido = "";
-	private String password = "";
 	private String usuario = "";
 	private String telefono;
 	private boolean activo;
 	private int tipoPersona;
 	private String descTipoPersona = "";
+	private Date fechaNacimiento = new Date();
 
 	public Persona() {
 	}
@@ -58,13 +61,13 @@ public class Persona implements Serializable {
 		this.EMail = EMail;
 	}
 
-	@Column(name = "RazonSocial", nullable = false, length = 200)
-	public String getRazonSocial() {
-		return razonSocial;
+	@Column(name = "Dni", nullable = false, length = 200)
+	public String getDni() {
+		return dni;
 	}
 
-	public void setRazonSocial(String razonSocial) {
-		this.razonSocial = razonSocial;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	@Column(name = "NombreYApellido", nullable = false, length = 200)
@@ -74,15 +77,6 @@ public class Persona implements Serializable {
 
 	public void setNombreYApellido(String nombreYApellido) {
 		this.nombreYApellido = nombreYApellido;
-	}
-
-	@Column(name = "Password", nullable = false, length = 200)
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Column(name = "Usuario", nullable = false, length = 20)
@@ -119,6 +113,16 @@ public class Persona implements Serializable {
 
 	public int getTipoPersona() {
 		return tipoPersona;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fechaNacimiento", nullable = false)
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	@Transient

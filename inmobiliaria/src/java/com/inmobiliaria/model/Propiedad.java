@@ -29,9 +29,11 @@ public class Propiedad implements Serializable {
 	private Date fechaAlta = new Date();
 	private boolean activa = false;
 	private boolean alquilada = false;
-	private Persona propietario;
+	private Persona propietario = new Persona();
 	private Localidad localidad = new Localidad();
 	private String estado = "";
+	private int cantHabitaciones;
+	private int cantAmbientes;
 
 	public Propiedad() {
 	}
@@ -122,6 +124,24 @@ public class Propiedad implements Serializable {
 
 	public Localidad getLocalidad() {
 		return localidad;
+	}
+
+	@Column(name = "cantHabitaciones", nullable = false)
+	public int getCantHabitaciones() {
+		return cantHabitaciones;
+	}
+
+	public void setCantHabitaciones(int cantHabitaciones) {
+		this.cantHabitaciones = cantHabitaciones;
+	}
+
+	@Column(name = "cantAmbientes", nullable = false)
+	public int getCantAmbientes() {
+		return cantAmbientes;
+	}
+
+	public void setCantAmbientes(int cantAmbientes) {
+		this.cantAmbientes = cantAmbientes;
 	}
 
 }

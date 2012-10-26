@@ -13,15 +13,13 @@ public class BaseAdminAction extends BaseAction {
 	private static final long serialVersionUID = 7357069042876547037L;
 
 	protected String ACTION_MENU = "menuAdmin";
-	protected String ACTION_TARJETAS_NUEVAS = "tarjetasNuevas";
-	protected String ACTION_TARJETAS_PRODUCTOR = "tarjetasProductor";
-	protected String ACTION_PROMOCIONES = "promociones";
-	protected String ACTION_PARTIDOS = "partidos";
-	protected String ACTION_PREGUNTAS = "preguntas";
-	protected String ACTION_POSICIONES = "gruposPrimeraFase";
+	protected String ACTION_PROPIEDADES = "propiedades";
+	protected String ACTION_NUEVO_PROPIETARIO = "nuevoPropietario";
+	
 	
 	// Constantes para variables de session.
 	protected String USUARIO_LOGUEADO = "usuario_logueado";
+	protected String NUEVA_PROPIEDAD = "nueva_propiedad";
 
 	protected int PAGINADOR_TAMANO_PAGINA = 10;
 	
