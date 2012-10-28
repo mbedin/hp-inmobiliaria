@@ -172,6 +172,7 @@
 		</action>
 
 		<!-- Propiedades -->
+		
 		<action name="propiedades" class="propiedadesAction" method="doList">
 			<result name="input" type="freemarker">admin/propiedades.ftl</result>
 			<result name="login" type="redirectAction">
@@ -179,59 +180,60 @@
 			</result>
 		</action>
 
-		<action name="cargaPropiedad" class="propiedadesAction" method="doInput">
-			<result name="input" type="freemarker">admin/cargaPropiedad.ftl</result>
+		<action name="cargaPropiedad" class="propiedadesAction" method="doInputAlta">
+			<result name="input" type="freemarker">admin/propiedad.ftl</result>
 			<result name="login" type="redirectAction">
 				<param name="actionName">loginAdmin</param>
 			</result>
 		</action>
 
 		<action name="propiedadEdit" class="propiedadesAction" method="doInput">
-			<result name="input" type="freemarker">admin/pregunta.ftl</result>
-			<result name="login" type="redirectAction">
-				<param name="actionName">loginAdmin</param>
-			</result>
-		</action>
-
-		<action name="grabarPropiedad" class="propiedadesAction"
-			method="doSave">
 			<result name="input" type="freemarker">admin/propiedad.ftl</result>
-			<result name="success" type="freemarker">admin/mensaje.ftl</result>
-			<result name="login" type="redirectAction">
-				<param name="actionName">loginAdmin</param>
-			</result>
-		</action>
-
-		<action name="eliminarPregunta" class="propiedadesAction"
-			method="doDelete">
-			<result name="input" type="freemarker">admin/propiedades.ftl</result>
-			<result name="success" type="freemarker">admin/mensaje.ftl</result>
 			<result name="login" type="redirectAction">
 				<param name="actionName">loginAdmin</param>
 			</result>
 		</action>
 
 		<action name="guardaPropiedad" class="propiedadesAction"
-			method="doSaveAlta">
-			<result name="input" type="freemarker">admin/cargaPropiedad.ftl</result>
+			method="doSave">
+			<result name="input" type="freemarker">admin/propiedad.ftl</result>
+			<result name="success" type="freemarker">admin/mensaje.ftl</result>
+			<result name="nuevoPropietario" type="redirectAction">
+				<param name="actionName">cargaPropietario</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+		</action>
+
+
+		<!-- Propietario -->
+		
+		<action name="cargaPropietario" class="propietarioAction" method="doInputAlta">
+			<result name="success" type="freemarker">admin/propietario.ftl
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+		</action>
+
+		<action name="propietarioEdit" class="propietarioAction" method="doInput">
+			<result name="input" type="freemarker">admin/propietario.ftl</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">loginAdmin</param>
+			</result>
+		</action>
+
+		<action name="guardaPropietario" class="propietarioAction" method="doSave">
+			<result name="input" type="freemarker">admin/propietario.ftl</result>
 			<result name="success" type="freemarker">admin/mensaje.ftl</result>
 			<result name="login" type="redirectAction">
 				<param name="actionName">loginAdmin</param>
 			</result>
 		</action>
 
-		<!-- Reportes Clientes -->
-		<action name="clientesAceptoBases" class="reportesClientesAction"
-			method="doListAceptoBases">
-			<result name="success" type="freemarker">admin/clientesAceptoBases.ftl
-			</result>
-			<result name="login" type="redirectAction">
-				<param name="actionName">loginAdmin</param>
-			</result>
-		</action>
 
-		<action name="clientesAceptoBasesExcel" class="reportesClientesAction"
-			method="doExcelAceptoBases">
+		<action name="clientesAceptoBasesExcel" class="reportesClientesAction" method="doExcelAceptoBases">
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-excel</param>
 				<param name="inputName">excelStream</param>
@@ -239,7 +241,6 @@
 				<param name="bufferSize">4096</param>
 			</result>
 		</action>
-
 
 
 		<!--***************** -->

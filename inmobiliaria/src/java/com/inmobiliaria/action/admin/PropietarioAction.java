@@ -43,7 +43,7 @@ public class PropietarioAction extends BaseAdminAction {
 
 		// Seteamos los services
 		this.personaService = personaService;
-		this.propiedadService = propiedadesService;
+		this.setPropiedadService(propiedadesService);
 
 	}
 
@@ -73,6 +73,30 @@ public class PropietarioAction extends BaseAdminAction {
 
 	public void setPropiedad(Propiedad propiedad) {
 		this.propiedad = propiedad;
+	}
+
+	public PersonaService getPersonaService() {
+		return personaService;
+	}
+
+	public void setPersonaService(PersonaService personaService) {
+		this.personaService = personaService;
+	}
+
+	public Persona getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Persona propietario) {
+		this.propietario = propietario;
+	}
+
+	public PropiedadesService getPropiedadService() {
+		return propiedadService;
+	}
+
+	public void setPropiedadService(PropiedadesService propiedadService) {
+		this.propiedadService = propiedadService;
 	}
 
 	/*************************************************
@@ -137,9 +161,9 @@ public class PropietarioAction extends BaseAdminAction {
 
 		this.setRetorno(ACTION_PROPIEDADES);
 
-		//this.setLocalidades(localidadService.findAll());
+		// this.setLocalidades(localidadService.findAll());
 
-		//this.propiedadAdapter.setPropiedad((new Propiedad()));
+		// this.propiedadAdapter.setPropiedad((new Propiedad()));
 
 		return Action.INPUT;
 	}
@@ -148,11 +172,11 @@ public class PropietarioAction extends BaseAdminAction {
 
 		this.setSubmitted(true);
 
-		//ValidatePartido(this.propiedadAdapter);
+		// ValidatePartido(this.propiedadAdapter);
 
 		if (this.hasFieldErrors()) {
 
-			//ReplaceNullValues(this.propiedadAdapter.getPropiedad());
+			// ReplaceNullValues(this.propiedadAdapter.getPropiedad());
 
 		}
 		this.setRetorno(ACTION_PROPIEDADES);
@@ -167,8 +191,8 @@ public class PropietarioAction extends BaseAdminAction {
 
 		// this.propiedadAdapter.getPropiedad().setGrupo(null);
 		// this.propiedadAdapter.getPropiedad().setPermiteCarga(true);
-		
-		//propiedadServicee.save(this.propiedadAdapter.getPropiedad());
+
+		// propiedadServicee.save(this.propiedadAdapter.getPropiedad());
 
 		this.setRetorno(ACTION_PROPIEDADES);
 
@@ -176,9 +200,6 @@ public class PropietarioAction extends BaseAdminAction {
 
 		return Action.SUCCESS;
 	}
-
-
-	
 
 	/*************************************************
 	 * Common
@@ -302,23 +323,6 @@ public class PropietarioAction extends BaseAdminAction {
 		texto = new HSSFRichTextString(getText("admin.cliente.mail"));
 		celda.setCellValue(texto);
 
-	}
-
-	
-	public void setPersonaService(PersonaService personaService) {
-		this.personaService = personaService;
-	}
-
-	public PersonaService getPersonaService() {
-		return personaService;
-	}
-
-	public void setPropietario(Persona propietario) {
-		this.propietario = propietario;
-	}
-
-	public Persona getPropietario() {
-		return propietario;
 	}
 
 }

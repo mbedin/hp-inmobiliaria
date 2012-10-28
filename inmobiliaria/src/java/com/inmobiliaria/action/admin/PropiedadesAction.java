@@ -144,8 +144,9 @@ public class PropiedadesAction extends BaseAdminAction {
 						.setNumeroPagina(this.paginador.getNumeroPagina() + 1);
 			}
 		}
-		this.setPropiedades(propiedadServicee.findPropiedades(this.paginador
-				.getNumeroPagina(), this.paginador.getTamanoPagina()));
+		this.setPropiedades(propiedadServicee.findPropiedades(
+				this.paginador.getNumeroPagina(),
+				this.paginador.getTamanoPagina()));
 		return Action.INPUT;
 	}
 
@@ -169,6 +170,7 @@ public class PropiedadesAction extends BaseAdminAction {
 		if (this.hasFieldErrors()) {
 			ReplaceNullValues(this.propiedadAdapter.getPropiedad());
 		}
+
 	}
 
 	public String doSave() {
@@ -252,7 +254,6 @@ public class PropiedadesAction extends BaseAdminAction {
 		return Action.SUCCESS;
 	}
 
-	
 	public String doSendNotificacion() {
 		if (!isSessionActive())
 			return Action.LOGIN;
@@ -408,8 +409,8 @@ public class PropiedadesAction extends BaseAdminAction {
 		celda.setCellValue(tarjeta.getId());
 
 		celda = fila.createCell(i++);
-		HSSFRichTextString texto = new HSSFRichTextString(cliente
-				.getNombreYApellido());
+		HSSFRichTextString texto = new HSSFRichTextString(
+				cliente.getNombreYApellido());
 		celda.setCellValue(texto);
 
 		celda = fila.createCell(i++);
