@@ -19,12 +19,12 @@
 							<td colspan="2">
 								<table class="clsLista">
 									<tr>
-										<td><@show.label key="admin.propiedad.descripcion"/></td>
-										<td><@show.label key="admin.propiedad.direccion"/></td>
-										<td><@show.label key="admin.propiedad.estado"/></td>
-										<td><@show.label key="admin.propiedad.fechaInauguracion"/></td>
-										<td><@show.label key="admin.propiedad.valor"/></td>
-										<td><@show.label key="admin.propiedad.estado"/></td>
+										<td><@show.label key="admin.propiedades.descripcion"/></td>
+										<td><@show.label key="admin.propiedades.direccion"/></td>
+										<td><@show.label key="admin.propiedades.estado"/></td>
+										<td><@show.label key="admin.propiedades.fechaInauguracion"/></td>
+										<td><@show.label key="admin.propiedades.valor"/></td>
+										<td><@show.label key="admin.propiedades.estado"/></td>
 										<td>&nbsp;</td>
 									</tr>
 									<#if ( (propiedades?size)?? && propiedades?size > 0 ) >
@@ -39,7 +39,7 @@
 											</tr>
 										</#list>
 									<#else>
-										<@show.label key="admin.propiedad.empty"/>
+										<@show.label key="admin.propiedades.empty"/>
 									</#if>
 								</table>
 							</td>
@@ -69,9 +69,9 @@
 							<td colspan="2">
 								<table>
 									<tr>
-										<td><@show.button key="admin.propiedad.button.volver" id="btnVolver"/></td>
+										<td><@show.button key="admin.propiedades.button.volver" id="btnVolver"/></td>
 										<td>&nbsp;&nbsp;&nbsp;</td>
-										<td><@show.button key="admin.propiedad.button.nuevo" id="btnNuevo"/></td>
+										<td><@show.button key="admin.propiedades.button.nuevo" id="btnNuevo"/></td>
 									</tr>
 								</table>
 							</td>
