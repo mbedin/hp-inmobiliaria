@@ -1,1 +1,1 @@
-<%response.sendRedirect("login.do");%>
+<%response.sendRedirect("loginAdmin.do");%>

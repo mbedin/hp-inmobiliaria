@@ -11,6 +11,9 @@
 					<ul>
 						<@show.menuOption key="admin.menu.propiedades" id="btnPropiedades"/>
 					</ul>
+					<ul>
+						<@show.menuOption key="admin.menu.propietarios" id="btnPropietarios"/>
+					</ul>
 				</td>
 			</tr>				
 		</table>

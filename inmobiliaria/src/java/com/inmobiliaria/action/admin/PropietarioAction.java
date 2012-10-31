@@ -43,7 +43,7 @@ public class PropietarioAction extends BaseAdminAction {
 
 		// Seteamos los services
 		this.personaService = personaService;
-		this.setPropiedadService(propiedadesService);
+		this.propiedadService = propiedadesService;
 
 	}
 
@@ -106,13 +106,14 @@ public class PropietarioAction extends BaseAdminAction {
 	public String doInput() {
 		if (!isSessionActive())
 			return Action.LOGIN;
-		this.setRetorno(ACTION_PROPIEDADES);
+		this.setRetorno(ACTION_PROPIETARIOS);
 
 		this.propiedad = (Propiedad) session.get(NUEVA_PROPIEDAD);
 
 		if (this.propiedad != null) {
 			// viene desde abm propiedades
 			this.propietarioAdapter.setPropiedad(this.propiedad);
+
 		} else {
 			// viene desde abm propietario
 			this.propietarioAdapter.setPropiedad((new Propiedad()));
@@ -124,9 +125,10 @@ public class PropietarioAction extends BaseAdminAction {
 
 	public void validateDoSave() {
 		// validaciones para campos del abm propietario
-
 		this.setSubmitted(true);
 		this.setRetorno(ACTION_PROPIEDADES);
+
+		validatePropietario(this.propietarioAdapter);
 
 		this.clearFieldErrors();
 		if (this.hasFieldErrors()) {
@@ -150,36 +152,31 @@ public class PropietarioAction extends BaseAdminAction {
 		return Action.SUCCESS;
 	}
 
-	private void fillPropietarioInfo(PropietarioAdapter propietarioAdapter2) {
-
-	}
-
 	public String doInputAlta() {
 
+		// viene desde menu principal
 		if (!isSessionActive())
 			return Action.LOGIN;
 
-		this.setRetorno(ACTION_PROPIEDADES);
-
-		// this.setLocalidades(localidadService.findAll());
-
-		// this.propiedadAdapter.setPropiedad((new Propiedad()));
+		this.setRetorno(ACTION_MENU);
 
 		return Action.INPUT;
+
 	}
 
 	public void validateDoSaveAlta() {
 
 		this.setSubmitted(true);
 
-		// ValidatePartido(this.propiedadAdapter);
+		validatePropietario(propietarioAdapter);
 
 		if (this.hasFieldErrors()) {
-
-			// ReplaceNullValues(this.propiedadAdapter.getPropiedad());
+			ReplaceNullValues(this.propietarioAdapter.getPropiedad());
 
 		}
-		this.setRetorno(ACTION_PROPIEDADES);
+
+		this.setRetorno(ACTION_PROPIETARIOS);
+
 	}
 
 	public String doSaveAlta() {
@@ -187,18 +184,14 @@ public class PropietarioAction extends BaseAdminAction {
 		if (!isSessionActive())
 			return Action.LOGIN;
 
-		this.setMensaje("partido cargado correctamente");
-
-		// this.propiedadAdapter.getPropiedad().setGrupo(null);
-		// this.propiedadAdapter.getPropiedad().setPermiteCarga(true);
-
-		// propiedadServicee.save(this.propiedadAdapter.getPropiedad());
+		personaService.save(propietario);
 
 		this.setRetorno(ACTION_PROPIEDADES);
 
-		this.setMensaje("partido cargado correctamente");
+		this.setMensaje("propietario cargado correctamente");
 
 		return Action.SUCCESS;
+	
 	}
 
 	/*************************************************
@@ -219,54 +212,62 @@ public class PropietarioAction extends BaseAdminAction {
 
 	}
 
-	private void ValidatePartido(PropiedadAdapter propiedadAdapter) {
-
-		// valida equipos ingresados
-
-		// if (this.propiedadAdapter.getPropiedad().getEquipoLocal().getId() ==
-		// this.propiedadAdapter
-		// .getPropiedad().getEquipoVisitante().getId()) {
-		// this.addFieldError("partido.equipos",
-		// getText("admin.partido.equipos.wrong"));
-		// }
-
-		// Valida fecha y hora ingresada
-
-		// Date fechaP = null;
-		// Time horaP = null;
-
-		// if (Util.isDate(this.propiedadAdapter.getFechaPartido())) {
-		// fechaP = Util.getDateFromString(this.propiedadAdapter
-		// .getFechaPartido());
-		// this.propiedadAdapter.getPropiedad().setFecha(fechaP);
-		// }
-		//
-		// if (Util.isTime(this.propiedadAdapter.getHoraPartido())) {
-		// horaP = Util.getTimeFromString(this.propiedadAdapter
-		// .getHoraPartido());
-		// this.propiedadAdapter.getPropiedad().setHora((horaP));
-		// } else {
-		// this.addFieldError("partido.horaPartido",
-		// getText("admin.partido.fechaPartido.missing"));
-		// }
-		//
-		// Date fechaActual = new Date();
-		//
-		// if (fechaP == null) {
-		// this.addFieldError("partido.fechaPartido",
-		// getText("admin.partido.fechaPartido.missing"));
-		// this.propiedadAdapter.getPropiedad().setFecha(new Date());
-		// } else if (Util.compareOnlyDates(fechaActual, fechaP) > 0) {
-		// this.addFieldError("partido.fechaPartido",
-		// getText("admin.partido.fechaPartido.wrong"));
-		// }
-		// if (horaP == null) {
-		// this.addFieldError("partido.horaPartido",
-		// getText("admin.partido.horaPartido.missing"));
-		// this.propiedadAdapter.getPropiedad().setHora(new Time(0));
-		// }
+	private void fillPropietarioInfo(PropietarioAdapter propietarioAdapter) {
 
 	}
+
+	private void validatePropietario(PropietarioAdapter propietarioAdapter) {
+
+	}
+
+	// private void ValidatePartido(PropiedadAdapter propiedadAdapter) {
+
+	// valida equipos ingresados
+
+	// if (this.propiedadAdapter.getPropiedad().getEquipoLocal().getId() ==
+	// this.propiedadAdapter
+	// .getPropiedad().getEquipoVisitante().getId()) {
+	// this.addFieldError("partido.equipos",
+	// getText("admin.partido.equipos.wrong"));
+	// }
+
+	// Valida fecha y hora ingresada
+
+	// Date fechaP = null;
+	// Time horaP = null;
+
+	// if (Util.isDate(this.propiedadAdapter.getFechaPartido())) {
+	// fechaP = Util.getDateFromString(this.propiedadAdapter
+	// .getFechaPartido());
+	// this.propiedadAdapter.getPropiedad().setFecha(fechaP);
+	// }
+	//
+	// if (Util.isTime(this.propiedadAdapter.getHoraPartido())) {
+	// horaP = Util.getTimeFromString(this.propiedadAdapter
+	// .getHoraPartido());
+	// this.propiedadAdapter.getPropiedad().setHora((horaP));
+	// } else {
+	// this.addFieldError("partido.horaPartido",
+	// getText("admin.partido.fechaPartido.missing"));
+	// }
+	//
+	// Date fechaActual = new Date();
+	//
+	// if (fechaP == null) {
+	// this.addFieldError("partido.fechaPartido",
+	// getText("admin.partido.fechaPartido.missing"));
+	// this.propiedadAdapter.getPropiedad().setFecha(new Date());
+	// } else if (Util.compareOnlyDates(fechaActual, fechaP) > 0) {
+	// this.addFieldError("partido.fechaPartido",
+	// getText("admin.partido.fechaPartido.wrong"));
+	// }
+	// if (horaP == null) {
+	// this.addFieldError("partido.horaPartido",
+	// getText("admin.partido.horaPartido.missing"));
+	// this.propiedadAdapter.getPropiedad().setHora(new Time(0));
+	// }
+
+	// }
 
 	private void ReplaceNullValues(Propiedad propiedad) {
 
@@ -275,53 +276,6 @@ public class PropietarioAction extends BaseAdminAction {
 
 		if (propiedad.getPropietario() == null)
 			propiedad.setPropietario(new Persona());
-
-	}
-
-	private InputStream getExcelTarjetasConPremio() {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		try {
-			// this.tarjetas =
-			// tarjetaService.findTarjetasConPremioEnPartido(this.propiedadAdapter.getPropiedad().getId());
-
-			HSSFWorkbook libro = new HSSFWorkbook();
-			HSSFSheet hoja = libro.createSheet();
-
-			InsertarEncabezado(hoja);
-
-			// for (Iterator<Tarjeta> iterator = this.tarjetas.iterator();
-			// iterator
-			// .hasNext();) {
-			// Tarjeta tarjeta = (Tarjeta) iterator.next();
-			// InsertarTarjeta(hoja, tarjeta);
-			// }
-
-			libro.write(bos);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return new ByteArrayInputStream(bos.toByteArray());
-
-	}
-
-	private void InsertarEncabezado(HSSFSheet hoja) {
-
-		int i = 0;
-		HSSFRow fila = hoja.createRow(0);
-		HSSFCell celda = fila.createCell(i++);
-		HSSFRichTextString texto = new HSSFRichTextString(
-				getText("admin.tarjeta.id"));
-		celda.setCellValue(texto);
-
-		celda = fila.createCell(i++);
-		texto = new HSSFRichTextString(getText("admin.cliente.nombre"));
-		celda.setCellValue(texto);
-
-		celda = fila.createCell(i++);
-		texto = new HSSFRichTextString(getText("admin.cliente.mail"));
-		celda.setCellValue(texto);
 
 	}
 

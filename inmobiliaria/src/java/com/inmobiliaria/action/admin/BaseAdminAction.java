@@ -14,12 +14,15 @@ public class BaseAdminAction extends BaseAction {
 
 	protected String ACTION_MENU = "menuAdmin";
 	protected String ACTION_PROPIEDADES = "propiedades";
+	protected String ACTION_NUEVA_PROPIEDAD = "nuevaPropiedad";
 	protected String ACTION_NUEVO_PROPIETARIO = "nuevoPropietario";
+	protected String ACTION_PROPIETARIOS = "propietarios";
 	
 	
 	// Constantes para variables de session.
 	protected String USUARIO_LOGUEADO = "usuario_logueado";
 	protected String NUEVA_PROPIEDAD = "nueva_propiedad";
+	protected String NUEVO_PROPIETARIO = "nuevo_propietario";
 
 	protected int PAGINADOR_TAMANO_PAGINA = 10;
 	

@@ -21,80 +21,54 @@
 										</td>
 									</tr>
 									<tr>
-										<td><@show.label key="admin.propietario.nombre"/></td>
+										<td rowspan="15" height="85"><img src="img/punto.gif" width="126" height="7" alt="" border="0"></td>
+										<td class="clsTxArialBlc12" ><@show.label key="propietario.NombreyApellido"/></td>
+										<td>&nbsp;</td>
+										<td >
+										<@show.inputText key="propietario.nombreYApellido" disabled="false" required="true" style="null" value="${propietario.nombreYApellido?string}" size="50" class="inputText" maxlength="20"/>
+										</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="4" align="center"><@show.labelErrorField key="propietario.nombreyapellido"/></td>
+									</tr>
+									<tr>
+										<td class="clsTxArialBlc12" ><@show.label key="propietario.celular"/></td>
 										<td>&nbsp;</td>
 										<td>
-											<input type="text" id="propietario_nombreYApellido" name="propietario.nombreYApellido" class="inputText" required="true" value="${propietario.nombreYApellido}" size="50" maxlength="10">
+											<@show.inputText key="propietario.celular" disabled="false" required="true" style="null" value="${propietario.celular?string}" size="20" class="inputText" maxlength="20"/>
 										</td>
+										<td>&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan="3" align="center"><@show.labelErrorField key="propietario.nombreYApellido"/></td>
+										<td colspan="4" align="center"><@show.labelErrorField key="propietario.celular"/></td>
 									</tr>
 									<tr>
-										<td><@show.label key="admin.propietario.direccion"/></td>
+										<td class="clsTxArialBlc12" ><@show.label key="propietario.documento"/></td>
 										<td>&nbsp;</td>
 										<td>
-											<input type="text" id="propietario_direccion" name="propietario.direccion" class="inputText" required="true" value="${propietario.direccion}" size="50" maxlength="10">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3" align="center"><@show.labelErrorField key="propietario.direccion"/></td>
-									</tr>
-									<tr>
-										<td><@show.label key="admin.propietario.localidad"/></td>
-										<td>&nbsp;</td>
-										<td width="265" class="clsTxArialNgr7">
-											<select name="propietario.propietario.localidad.id" id="propietario.propietario.localidad.id" class="selectFixed">
-											<#list localidades as loc>
-												<option value="${loc.id?c}" <#if loc.id?c == loc.id?c>selected</#if>>${loc.descripcion}</option>				
-											</#list>
-										</select>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="3" align="center"><@show.labelErrorField key="propietario.localidad"/></td>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-									</tr>
-									<tr>
-										<td><@show.label key="admin.propietario.cantAmbientes"/></td>
-										<td>&nbsp;</td>
-										<td width="265" class="clsTxArialNgr7">
-											<select name="propietario.propietario.cantAmbientes" id="propietario.propietario.cantAmbientes" class="selectFixed">
-												<option value="1" <#if 1 == propietario.propietario.cantAmbientes > selected </#if>>1</option>
-												<option value="2" <#if 2 == propietario.propietario.cantAmbientes > selected </#if>>2</option>
-												<option value="3" <#if 3 == propietario.propietario.cantAmbientes > selected </#if>>3</option>
-												<option value="4" <#if 4 == propietario.propietario.cantAmbientes > selected </#if>>4</option>
-												<option value="5" <#if 5 == propietario.propietario.cantAmbientes > selected </#if>>5</option>
+											<select name="propietario.tipoDocumento.id" id="propietario.tipoDocumento.id" >
+												<#list tipoDocumentos as tipoDocumento>
+													<option value="${tipoDocumento.id?c}" <#if tipoDocumento.id == propietario.tipoDocumento.id>selected</#if> >${tipoDocumento.descripcionTipo}</option>
+												</#list>
 											</select>
+											<@show.inputText key="propietario.numeroDocumento" disabled="false" required="true" style="null" value="${propietario.numeroDocumento?string}" size="15" class="inputText" maxlength="15"/>
 										</td>
-									</tr>
-									<tr>
-										<td colspan="3" align="center"><@show.labelErrorField key="propietario.cantAmbientes"/></td>
-									</tr>
-									<tr>
-										<td><@show.label key="admin.propietario.cantHabitaciones"/></td>
 										<td>&nbsp;</td>
-										<td width="265" class="clsTxArialNgr7">
-											<select name="propietario.propietario.cantHabitaciones" id="propietario.propietario.cantHabitaciones" class="selectFixed">
-												<option value="1" <#if 1 == propietario.propietario.cantHabitaciones > selected </#if>>1</option>
-												<option value="2" <#if 2 == propietario.propietario.cantHabitaciones > selected </#if>>2</option>
-												<option value="3" <#if 3 == propietario.propietario.cantHabitaciones > selected </#if>>3</option>
-												<option value="4" <#if 4 == propietario.propietario.cantHabitaciones > selected </#if>>4</option>
-												<option value="5" <#if 5 == propietario.propietario.cantHabitaciones > selected </#if>>5</option>
-											</select>
-										</td>
 									</tr>
 									<tr>
-										<td colspan="3" align="center"><@show.labelErrorField key="propietario.localidad"/></td>
+										<td colspan="4" align="center"><@show.labelErrorField key="propietario.documento"/></td>
 									</tr>
 									<tr>
-										<td><@show.label key="admin.propietario.propietario.dni"/></td>
+										<td class="clsTxArialBlc12" ><@show.label key="propietario.Email"/></td>
 										<td>&nbsp;</td>
 										<td>
-											<input type="text" id="propietario_dniPropietario" name="propietario.dniPropietario" class="inputText" required="true" value="${propietario.dniPropietario}" size="50" maxlength="10">
+											<@show.inputText key="propietario.email" disabled="false" required="true" style="null" value="${propietario.email?string}" size="40" class="inputText" maxlength="100"/>
 										</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td colspan="4" align="center"><@show.labelErrorField key="propietario.email"/></td>
 									</tr>
 								</table>
 							</td>
