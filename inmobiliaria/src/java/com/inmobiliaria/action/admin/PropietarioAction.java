@@ -1,20 +1,9 @@
 package com.inmobiliaria.action.admin;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
 import com.inmobiliaria.model.Localidad;
 import com.inmobiliaria.model.Paginador;
 import com.inmobiliaria.model.Persona;
 import com.inmobiliaria.model.Propiedad;
-import com.inmobiliaria.model.PropiedadAdapter;
 import com.inmobiliaria.model.PropietarioAdapter;
 import com.inmobiliaria.service.PersonaService;
 import com.inmobiliaria.service.PropiedadesService;

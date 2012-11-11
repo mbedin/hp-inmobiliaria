@@ -23,6 +23,10 @@ import javax.persistence.TemporalType;
 @Table(name = "propiedades")
 public class Propiedad implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String ESTADO_ALQUILADO = "alquilado";
+	public static final String ESTADO_DISPONIBLE = "disponible";
+	
 	private int id;
 	private String descripcion = "";
 	private String direccion = "";
